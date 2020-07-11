@@ -4,6 +4,7 @@ import { Menu } from "antd";
 import shortid from "shortid";
 import { MenuItem } from "./types";
 import { NewArticle, ArticleAdmin, FatherA, FatherB } from "../constants";
+import { generateMenu } from "./utils";
 
 const { SubMenu } = Menu;
 
@@ -52,27 +53,6 @@ const menuArray: MenuItem[] = [
     ]
   }
 ];
-
-const generateMenu = (menuArray:MenuItem[]) => {
-  const itemList = [];
-  for (const item of menuArray) {
-    if (item.children) {
-      const subList = generateMenu(item.children);
-      itemList.push((
-        <SubMenu title={item.text}>
-          {subList}
-        </SubMenu>));
-    } else {
-      itemList.push((
-        <Menu.Item>
-          <Link to={item.path}>
-            {item.text}
-          </Link>
-        </Menu.Item>));
-    }
-  }
-  return itemList;
-};
 
 const MenuList = () => {
   const menuItemList = generateMenu(menuArray);

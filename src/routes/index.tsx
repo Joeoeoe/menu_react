@@ -13,16 +13,14 @@ const configModuleArray = [
   fatherBConfig
 ];
 
-const generateRoutes = (configArray:Config[]) => {
+const generateRoutes = (configModuleArray: any) => {
+  const configArray = new Array(0).concat(...configModuleArray);
   const routeArray = configArray.map((item) => (
     <Route path={item.path} exact={item.exact}>
       {item.component}
     </Route>
   ));
-
   return (<Switch>{routeArray}</Switch>);
 };
 
-const configArray = new Array(0).concat(...configModuleArray);
-
-export default generateRoutes(configArray);
+export default generateRoutes(configModuleArray);
