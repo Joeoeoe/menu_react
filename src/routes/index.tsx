@@ -16,9 +16,7 @@ const configModuleArray = [
 const generateRoutes = (configModuleArray: any) => {
   const configArray = new Array(0).concat(...configModuleArray);
   const routeArray = configArray.map((item) => (
-    <Route path={item.path} exact={item.exact}>
-      {item.component}
-    </Route>
+    <Route path={item.path} exact={item.exact} component={item.component} />
   ));
   return (<Switch>{routeArray}</Switch>);
 };
